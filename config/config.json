@@ -1,0 +1,9 @@
+{
+    "loaders": [
+        {
+            "loader_type": "DirectoryLoader",
+            "path": "C:\\Users\\km\\Downloads\\revisedmanuscriptfrontierspaper\\55",
+            "recursive": "True"
+        }
+    ]
+}
