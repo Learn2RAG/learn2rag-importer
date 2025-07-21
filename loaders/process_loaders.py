@@ -5,6 +5,7 @@ Description:
 This module processes configuration entries and delegates loading to specific loader functions.
 
 Author: Kyrill Meyer
+Institution: IFDT
 Version: 0.0.1
 Creation Date: June 10, 2025
 """
@@ -15,6 +16,7 @@ import threading
 from globals import stop_loading
 from loaders.directory_loader import load_from_directory
 from loaders.csv_loader import load_from_csv
+from loaders.html_loader import load_html_content
 
 #
 # initialize logger
@@ -50,19 +52,32 @@ def process_configuration_entries(config_entries):
 
     for entry in config_entries:
         loader_type = entry.get("loader_type")
-        path = entry.get("path")
-        recursive = entry.get("recursive", False)
 
-        if not loader_type or not path:
+        if not loader_type:
             logger.error(f"Invalid configuration entry: {entry}")
             continue
 
         try:
             logger.info(f"Processing entry: {entry}, please wait...")
             if loader_type == "DirectoryLoader":
+                path = entry.get("path")
+                recursive = entry.get("recursive", False)
+                if not path:
+                    logger.error("Missing 'path' for 'DirectoryLoader' in configuration entry.")
+                    continue
                 documents = load_from_directory(path, recursive=recursive)
             elif loader_type == "CSVLoader":
+                if not path:
+                    logger.error("Missing 'path' for 'CSVLoader' in configuration entry.")
+                    continue
                 documents = load_from_csv(path)
+            elif loader_type == "HTMLLoader":
+                url = entry.get("url")
+                depth = entry.get("depth", 0)
+                if not url or not isinstance(depth, int) or depth < 0:
+                    logger.error(f"Invalid configuration for HTMLLoader: {entry}")
+                    continue
+                documents = load_html_content(url, depth=depth)
             else:
                 logger.error(f"Unknown loader type: {loader_type}")
                 continue

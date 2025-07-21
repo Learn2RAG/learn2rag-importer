@@ -4,7 +4,7 @@ main.py
 Description:
 This is the main script of the learn2rag-importer project, which is designed to import and process data for the learn2rag application.
 
-Author: Kyrill Meyer, IFDT
+Author: Kyrill MeyerInstitution: IFDT
 Version: 0.0.1
 Creation Date: June 10, 2025
 """
@@ -12,7 +12,7 @@ Creation Date: June 10, 2025
 import json
 import os
 import logging
-from config.config_constants import LOGGING_CONFIG_PATH, JSON_CONFIG_PATH, LOGS_DIR
+from config.config_constants import LOGGING_CONFIG_PATH, JSON_CONFIG_PATH, LOGS_DIR, VERSION
 from utils.logging_setup import setup_logging
 from utils.config_loader import load_json_config, validate_config_entry
 from loaders.process_loaders import process_configuration_entries
@@ -23,7 +23,7 @@ def main():
     # Display a small textual description about the app
     print("------------------------------------------------------------")
     print("Learn2RAG Importer - DataImporter for Learn2RAG.")
-    print("Version: 0.0.1 | Author: IFDT (KM) | Date: June 10, 2025\n")
+    print(f"Version: {VERSION} | Author: IFDT (KM) | Date: July 21, 2025\n")
     print("https://github.com/Learn2RAG/")
     print("------------------------------------------------------------\n")
 

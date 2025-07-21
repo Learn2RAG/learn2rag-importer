@@ -2,8 +2,13 @@
     "loaders": [
         {
             "loader_type": "DirectoryLoader",
-            "path": "C:\\Users\\km\\Downloads\\revisedmanuscriptfrontierspaper\\55",
+            "path": "C:\\Users\\foo",
             "recursive": "True"
+        },
+        {
+            "loader_type": "HTMLLoader",
+            "url": "https://ifdt.org/",
+            "depth": 1
         }
     ]
 }

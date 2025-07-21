@@ -6,6 +6,7 @@ This module handles loading documents from directories.
 
 Author: Kyrill Meyer
 Version: 0.0.1
+Institution: IFDT
 Creation Date: June 10, 2025
 """
 import hashlib

@@ -6,6 +6,7 @@ This module contains global variables that are shared across different modules
 in the Learn2RAG Importer project.
 
 Author: Kyrill Meyer
+Institution: IFDT
 Version: 0.0.1
 Creation Date: June 10, 2025
 """

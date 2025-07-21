@@ -5,6 +5,7 @@ Description:
 This module provides a function to load configuration files (e.g., JSON, YAML) for the application.
 
 Author: Kyrill Meyer
+Institution: IFDT
 Version: 0.0.1
 Creation Date: June 10, 2025
 """
@@ -28,6 +29,7 @@ def validate_config_entry(entry):
     loader_type = entry.get("loader_type")
     path = entry.get("path")
     recursive = entry.get("recursive")
+    url = entry.get("url")
 
     if not loader_type:
         raise ValueError("Missing 'loader_type' in configuration entry.")
@@ -40,6 +42,9 @@ def validate_config_entry(entry):
     elif loader_type == "CSVLoader":
         if not path:
             raise ValueError("Missing 'path' for 'CSVLoader' in configuration entry.")
+    elif loader_type == "HTMLLoader":
+        if not url:
+            raise ValueError("Missing 'url' to access for 'HTMLLoader' in configuration entry.")  
     else:
         raise ValueError(f"Unknown 'loader_type': {loader_type}")
 
