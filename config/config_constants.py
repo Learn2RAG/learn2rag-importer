@@ -14,4 +14,4 @@ Creation Date: June 10, 2025
 LOGGING_CONFIG_PATH = "config/logging.yaml"
 LOGS_DIR = "logs"
 JSON_CONFIG_PATH = "config/config.json"
-VERSION = "0.0.2"
+VERSION = "0.0.3"

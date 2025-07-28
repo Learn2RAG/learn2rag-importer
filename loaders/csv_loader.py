@@ -5,6 +5,7 @@ Description:
 This module handles loading documents from CSV files.
 
 Author: Kyrill Meyer
+Institution: IFDT
 Version: 0.0.1
 Creation Date: June 10, 2025
 """

@@ -6,11 +6,11 @@ This module handles loading documents from HTML sources.
 
 Author: Kyrill Meyer
 Institution: IFDT
-Version: 0.0.1
-Creation Date: July 21, 2025
+Version: 0.0.2
+Creation Date: July 28, 2025
 """
 
-import requests
+import hashlib
 from bs4 import BeautifulSoup
 from datetime import datetime
 from globals import stop_loading
@@ -18,6 +18,7 @@ from langchain.document_loaders import UnstructuredHTMLLoader
 from langchain_core.documents import Document
 import logging
 import os
+import requests
 
 
 # initialize logger
@@ -67,6 +68,13 @@ def load_html_content(url, depth=0, visited=None) -> list[Document]:
             if stop_loading:
                 logger.info("Loading process stopped by user.")
                 break
+            # Generate a unique hash for the document content
+            if isinstance(doc, Document):
+                content_hash = hashlib.sha256(doc.page_content.encode('utf-8')).hexdigest()
+                doc.metadata["content_hash"] = content_hash
+            else:
+                logger.warning(f"Document is not of type Document: {type(doc)}. Skipping.")
+                continue
             doc.metadata["source"] = url
             doc.metadata["process_date"] = datetime.now().strftime("%Y-%m-%d")
             doc.metadata["process_time"] = datetime.now().strftime("%H:%M:%S")
